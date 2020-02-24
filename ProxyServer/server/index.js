@@ -1,3 +1,4 @@
+const nr = require('newrelic');
 const express = require('express');
 const app = express();
 const axios = require('axios');
@@ -45,12 +46,15 @@ app.use(express.static('./public'));
 // });
 
 app.get('/additional/:id', (req, res) => {
-  const id = req.params.id
+  const id = parseInt(req.params.id, 10);
   // additional items
   axios.get(`http://localhost:3004/additional/${id}`)
     .then((response) => {
       res.status(200).json(response.data);
-    });
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    })
 });
 
 app.listen(port, () => {
