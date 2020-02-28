@@ -1,12 +1,14 @@
 const nr = require('newrelic');
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const axios = require('axios');
 
 require('dotenv').config();
 const port = process.env.PROXY_PORT || 3005;
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cors());
 app.use(express.static('./public'));
 
 // app.get('/carousel/:id', (req, res) => {
