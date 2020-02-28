@@ -50,7 +50,7 @@ app.use(express.static('./public'));
 app.get('/additional/:id', (req, res) => {
   const id = parseInt(req.params.id, 10);
   // additional items
-  axios.get(`http://18.208.177.170:3004/additional/${id}`)
+  axios.get(`http://3.221.1.63:3004/additional/${id}`)
     .then((response) => {
       res.status(200).json(response.data);
     })
